@@ -278,7 +278,20 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Keep existing shadow */
+    
+    /* Helix Animation Styles */
+    transform-style: preserve-3d; /* Needed for 3D transformations */
+    transform: rotateX(90deg) scale(0.8); /* Initial state: tilted and slightly smaller */
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+
+/* State when in view */
+.apple-music-card.is-visible {
+    transform: rotateX(0deg) scale(1); /* Final state: flat and normal size */
+    opacity: 1;
+}
+
 @media (min-width: 768px) {
     .apple-music-card {
         grid-template-columns: 1fr 1fr;
@@ -773,160 +786,4 @@ html {
 .scroll-animated[data-delay="300"] { transition-delay: 0.3s; }
 .scroll-animated[data-delay="400"] { transition-delay: 0.4s; }
 .scroll-animated[data-delay="500"] { transition-delay: 0.5s; }
-.scroll-animated[data-delay="600"] { transition-delay: 0.6s; }
-.scroll-animated[data-delay="700"] { transition-delay: 0.7s; }
-.scroll-animated[data-delay="800"] { transition-delay: 0.8s; }
-.scroll-animated[data-delay="900"] { transition-delay: 0.9s; }
-.scroll-animated[data-delay="1000"] { transition-delay: 1.0s; }
-
-/* Custom Modal Styles */
-.custom-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.custom-modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.custom-modal-content {
-    background: #2a2a2a;
-    color: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transform: translateY(-20px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.custom-modal-overlay.visible .custom-modal-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.custom-modal-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.custom-modal-content p {
-    font-size: 1rem;
-    margin-bottom: 25px;
-}
-
-.custom-modal-content button {
-    background: #0071e3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s ease;
-}
-
-.custom-modal-content button:hover {
-    background: #005bb5;
-}
-
-/* Card Modal Styles */
-.card-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000; /* Higher than navbar */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.card-modal-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.card-modal-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(40px) saturate(180%);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border-radius: 2.5rem; /* 40px */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    max-width: 600px;
-    width: 90%;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    text-align: center;
-    transform: scale(0.8);
-    opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
-    position: relative; /* For close button positioning */
-}
-
-.card-modal-overlay.visible .card-modal-content {
-    transform: scale(1);
-    opacity: 1;
-}
-
-.card-modal-content img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 2rem; /* 32px */
-    margin-bottom: 20px;
-}
-
-.card-modal-content h3 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.card-modal-content p {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    margin-bottom: 20px;
-}
-
-.card-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    color: #fff;
-    transition: background 0.2s ease;
-}
-
-.card-modal-close:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
+.scroll-animated[data-delay="6
