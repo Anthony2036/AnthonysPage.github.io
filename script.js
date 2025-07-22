@@ -91,6 +91,24 @@ document.querySelectorAll('.scroll-animated').forEach(el => {
     scrollObserver.observe(el); // Start observing
 });
 
+// Observe the Apple Music card specifically for the helix animation
+const appleMusicCard = document.querySelector('.apple-music-card');
+if (appleMusicCard) {
+    const appleMusicObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add 'is-visible' class to trigger the helix animation
+                entry.target.classList.add('is-visible');
+                appleMusicObserver.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, {
+        threshold: 0.3 // Trigger when 30% of the card is visible
+    });
+    appleMusicObserver.observe(appleMusicCard);
+}
+
+
 // Dynamic message animation for messages demo
 function addMessage() {
     const messagesDemo = document.querySelector('.messages-demo');
